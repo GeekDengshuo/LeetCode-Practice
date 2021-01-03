@@ -1,9 +1,11 @@
+package src.string;
+
 /**
  * @Author deng shuo
  * @Date 2020/12/29 22:56
  * @Version 1.0
  */
-public class StringToInteger {
+public class StringToInteger8_atoi {
     // boundary value
     private int CalcNum(String str){
         int len = str.length();
@@ -42,7 +44,7 @@ public class StringToInteger {
     }
 
     public static void main(String[] args) {
-        StringToInteger stringToInteger = new StringToInteger();
+        StringToInteger8_atoi stringToInteger = new StringToInteger8_atoi();
         String s = "746";
         int res = stringToInteger.myAtoi(s);
         System.out.println(res);

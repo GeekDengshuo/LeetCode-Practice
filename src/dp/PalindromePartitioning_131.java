@@ -60,4 +60,46 @@ public class PalindromePartitioning_131 {
         }
         return true;
     }
+
+    int[][] dp;
+    List<List<String>> res = new ArrayList<List<String>>();
+    List<String> cur = new ArrayList<>();
+    int len;
+    public List<List<String>> partitionImprove(String s) {
+        len = s.length();
+        dp = new int[len][len];
+
+        dfs(s,0);
+        return res;
+
+    }
+    private void dfs(String s,int index){
+        if(index == len){
+            res.add(new ArrayList<>(cur));
+            return;
+        }
+        for(int i= index;i<len;i++){
+            if(isPalindromeImprove(s,index,i) == 1){
+                cur.add(s.substring(i,index+1));
+                dfs(s,index+1);
+                cur.remove(cur.size()-1);
+            }
+        }
+
+    }
+    //搜索中，f[i][j] = 0 表示未搜索，1 表示是回文串，-1 表示不是回文串
+    private int isPalindromeImprove(String s,int i,int j){
+        if(dp[i][j] != 0){
+            return dp[i][j];
+        }
+        if(i>=j){
+            dp[i][j] = 1;
+        }else if(s.charAt(i) == s.charAt(j)){
+            dp[i][j] = isPalindromeImprove(s,i+1,j-1);
+        }else{
+            dp[i][j] = -1;
+        }
+        return dp[i][j];
+
+    }
 }
